@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char*argv[]) {
 
 	HashSet<string> hashTable;
 
@@ -15,38 +15,36 @@ int main() {
 	string item;
 	
 	ifstream in;
-	in.open("in75.txt");
+        in.open(argv[1]);
 
-	//ofstream out;
-	//out.open("actual.txt");
+        ofstream out;
+        out.open(argv[2]);
 
 	while (in >> cmd) {
 		if (cmd == "clear") {
-			cout << "clear" << endl;
+                        out << "clear" << endl;
 			hashTable.clear();
 		}
 		if (cmd == "add") {
 			in >> item;
-			cout << "add " << item << endl;
+                        out << "add " << item << endl;
 			hashTable.add(item);
 		}
 		if (cmd == "remove") {
 			in >> item;
-			cout << "remove " << item << endl;
+                        out << "remove " << item << endl;
 			hashTable.remove(item);
 		}
 		if (cmd == "find") {
 			in >> item;
-			cout << "find " << item << " " << boolalpha << hashTable.find(item) << endl;
+                        out << "find " << item << " " << boolalpha << hashTable.find(item) << endl;
 		}
 		if (cmd == "print") {
-			hashTable.print();			//pass out when writing to file
+                        hashTable.print(out);			//pass out when writing to file
 		}
 	}
 
-	//out.close();
+        out.close();
 
-
-	system("pause");
 	return 0;
 }
