@@ -89,8 +89,11 @@ public:
 			unsigned index = hashCode(item);
 			index = index % tableSize;
 			table[index].push_back(item);
+                        itemCount++;
 		}
-		itemCount++;
+		else{
+                    return;
+                }
 	}
 
 //remove function
@@ -125,20 +128,20 @@ public:
 	}
 
 //print function
-	void print() {
+	void print(ofstream& out) {
 		int max = 8;
-		cout << "print" << endl;
+		out << "print" << endl;
 		for (int i = 0; i < tableSize; i++) {
-			cout << "hash " << i << ": ";
+			out << "hash " << i << ":";
 			for (int j = 0, k = 0; j < table[i].getSize(); j++, k++) {
 				if (k == max) {
 					k = 0;
-					cout << endl;
-					cout << "hash " << i << ": ";
+					out << endl;
+					out << "hash " << i << ":";
 				}
-				cout << table[i].at(j) << " ";				//item is in the node structure not linked list
+				out << " " << table[i].at(j);			//item is in the node structure not linked list
 			}
-			cout << endl;
+			out << endl;
 		}
 	}
 
